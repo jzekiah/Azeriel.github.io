@@ -124,10 +124,16 @@
     </div>
 
     <script>
-        // 🚨 CRITICAL: REPLACE THESE WITH YOUR GOOGLE FORM IDs AND URL 🚨
-        const FORM_URL = https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg/viewform?usp=header;
-        const NAME_FIELD_ID = "[ENTRY_ID_FOR_GODPARENT_NAME_FIELD]"; 
-        const RESPONSE_FIELD_ID = "[ENTRY_ID_FOR_ACCEPT_DECLINE_FIELD]"; 
+        // FORM_URL is the first part of the link before "/formResponse"
+        const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg"; 
+        
+        // You MUST replace these two numbers with the unique IDs from your link!
+        const NAME_FIELD_ID = "entry.123456789";        
+        const RESPONSE_FIELD_ID = "entry.987654321";    
+        
+        // ... (rest of the code)
+</script>
+
         
         function getGodparentName() {
             const params = new URLSearchParams(window.location.search);
