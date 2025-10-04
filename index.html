@@ -85,37 +85,3 @@
     </script>
     </body>
 </html>
-        }
-
-        function submitResponse(response) {
-            const godparentName = getGodparentName();
-            
-            // 1. Build the submission URL to silently submit the Google Form
-            const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
-
-            // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
-            // This ensures the page doesn't navigate away and just updates.
-            window.open(submitLink, '_blank', 'width=100,height=100');
-            
-            // 3. Update the page to show a confirmation message
-            const container = document.querySelector('.container');
-            container.innerHTML = `
-                <div class="confirmation-message">
-                    <h1>Response Sent!</h1>
-                    <p>Thank you, ${godparentName}, for your quick response.</p>
-                    <p style="font-size: 1.1em; color: #36454F;">Azeriel's parents are so grateful for you.</p>
-                </div>
-            `;
-        }
-        
-        // Initialization: Personalize the Greeting based on the URL name
-        document.addEventListener('DOMContentLoaded', () => {
-            const godparentName = getGodparentName();
-            if (godparentName !== 'Dear Friend') {
-                 // The title is personalized, e.g., "To My Future Godparent, Aunt Maria!"
-                 document.getElementById('greeting-title').textContent = `To My Future Godparent, ${godparentName}!`;
-            }
-        });
-    </script>
-    </body>
-</html>
