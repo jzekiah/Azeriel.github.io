@@ -32,15 +32,21 @@
         <p style="margin-top: 40px; font-size: 0.9em; color: #777;">
             The christening will be held on **Saturday, January 24, 2026**, at **Nuestra Señora De La Paz Chapel, Basdio, Guindulman, Bohol**.
         </p>
+        
+        <div style="margin-top: 50px;">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg/viewform?embedded=true" width="100%" height="623" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
     </div>
 
     <script>
         // *** ACTION REQUIRED: You MUST replace the placeholder values below! ***
         
         // FORM_URL is the first part of the link before "/formResponse"
+        // This has been correctly updated based on your provided link.
         const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg"; 
         
-        // You MUST replace these two numbers with the unique Entry IDs from your Google Form link!
+        // YOU MUST REPLACE THESE PLACEHOLDERS WITH YOUR ACTUAL GOOGLE FORM ENTRY IDs!
+        // The script will not work until these numbers are corrected.
         const NAME_FIELD_ID = "entry.123456789";        
         const RESPONSE_FIELD_ID = "entry.987654321";    
         
@@ -56,7 +62,8 @@
             const godparentName = getGodparentName();
             
             // 1. Build the submission URL to silently submit the Google Form
-            const submitLink = `${<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg/viewform?embedded=true" width="640" height="623" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
+            // It uses the clean FORM_URL defined above.
+            const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
 
             // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
             // This ensures the page doesn't navigate away and just updates.
