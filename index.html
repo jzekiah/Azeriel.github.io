@@ -4,105 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Very Special Question for Azeriel Leven Amper</title>
-    <style>
-        /* Font and color settings */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300&display=swap');
-        
-        /* Define the Family Blue color for the theme */
-        :root {
-            --family-blue: #4169E1; /* Royal Blue for Christening Boy */
-            --accent-color: #f0f4f7; /* Light Blue/Gray background */
-        }
+    
+    <link rel="stylesheet" href="style.css"> 
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--accent-color);
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            /* Ensure the body is at least viewport height */
-            min-height: 100vh; 
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            max-width: 650px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            border-top: 5px solid var(--family-blue); 
-            width: 90%; /* Added for better mobile support */
-        }
-        .baby-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 35px auto;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: block;
-        }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--family-blue);
-            font-size: 2.8em;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4em;
-            color: #36454F; /* Dark Slate Gray */
-            margin-bottom: 35px;
-        }
-        p {
-            font-size: 1.15em;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        .button-group button {
-            padding: 16px 35px;
-            font-size: 1.1em;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-        }
-        .accept {
-            background-color: var(--family-blue);
-            color: white;
-        }
-        .accept:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        }
-        .decline {
-            background-color: #e0e0e0; 
-            color: #555;
-        }
-        .decline:hover {
-            background-color: #ccc;
-            transform: translateY(-2px);
-        }
-        .confirmation-message {
-            margin-top: 40px;
-            font-size: 1.3em;
-            color: var(--family-blue);
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -131,7 +35,7 @@
     </div>
 
     <script>
-        // NOTE: YOU MUST REPLACE THE PLACEHOLDER VALUES BELOW!
+        // *** ACTION REQUIRED: You MUST replace the placeholder values below! ***
         
         // FORM_URL is the first part of the link before "/formResponse"
         const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg"; 
@@ -146,6 +50,41 @@
             // Extracts the name from the URL, e.g., ?name=Auntie%20Maria
             // Returns 'Dear Friend' if no name is found in the URL.
             return params.get('name') || 'Dear Friend'; 
+        }
+
+        function submitResponse(response) {
+            const godparentName = getGodparentName();
+            
+            // 1. Build the submission URL to silently submit the Google Form
+            const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
+
+            // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
+            // This ensures the page doesn't navigate away and just updates.
+            window.open(submitLink, '_blank', 'width=100,height=100');
+            
+            // 3. Update the page to show a confirmation message
+            const container = document.querySelector('.container');
+            container.innerHTML = `
+                <div class="confirmation-message">
+                    <h1 style="font-size: 2.5em;">Response Sent!</h1>
+                    <p>Thank you, ${godparentName}, for your quick response.</p>
+                    <p style="font-size: 1.1em; color: #36454F;">Azeriel's parents are so grateful for you.</p>
+                    <p style="font-size: 0.9em; margin-top: 30px;">(You may now close this window.)</p>
+                </div>
+            `;
+        }
+        
+        // Initialization: Personalize the Greeting based on the URL name
+        document.addEventListener('DOMContentLoaded', () => {
+            const godparentName = getGodparentName();
+            if (godparentName !== 'Dear Friend') {
+                 // The title is personalized, e.g., "To My Future Godparent, Aunt Maria!"
+                 document.getElementById('greeting-title').textContent = `To My Future Godparent, ${godparentName}!`;
+            }
+        });
+    </script>
+    </body>
+</html>
         }
 
         function submitResponse(response) {
