@@ -56,7 +56,7 @@
             const godparentName = getGodparentName();
             
             // 1. Build the submission URL to silently submit the Google Form
-            const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
+            const submitLink = `${<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg/viewform?embedded=true" width="640" height="623" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
 
             // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
             // This ensures the page doesn't navigate away and just updates.
