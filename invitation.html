@@ -20,6 +20,12 @@
             color: #333;
             text-align: center;
             padding: 20px;
+            /* Ensure the body is at least viewport height */
+            min-height: 100vh; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container {
             max-width: 650px;
@@ -29,6 +35,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             border-top: 5px solid var(--family-blue); 
+            width: 90%; /* Added for better mobile support */
         }
         .baby-photo {
             width: 160px;
@@ -124,20 +131,20 @@
     </div>
 
     <script>
+        // NOTE: YOU MUST REPLACE THE PLACEHOLDER VALUES BELOW!
+        
         // FORM_URL is the first part of the link before "/formResponse"
         const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdzZMuR5wbI9OmGXWpuiuNI3_gBEik8s_GxpyX4LDHiswHaKg"; 
         
-        // You MUST replace these two numbers with the unique IDs from your link!
+        // You MUST replace these two numbers with the unique Entry IDs from your Google Form link!
         const NAME_FIELD_ID = "entry.123456789";        
         const RESPONSE_FIELD_ID = "entry.987654321";    
         
-        // ... (rest of the code)
-</script>
-
         
         function getGodparentName() {
             const params = new URLSearchParams(window.location.search);
-            // This extracts the name from the URL, e.g., ?name=Auntie%20Maria
+            // Extracts the name from the URL, e.g., ?name=Auntie%20Maria
+            // Returns 'Dear Friend' if no name is found in the URL.
             return params.get('name') || 'Dear Friend'; 
         }
 
@@ -148,6 +155,7 @@
             const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
 
             // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
+            // This ensures the page doesn't navigate away and just updates.
             window.open(submitLink, '_blank', 'width=100,height=100');
             
             // 3. Update the page to show a confirmation message
@@ -170,5 +178,5 @@
             }
         });
     </script>
-</body>
+    </body>
 </html>
