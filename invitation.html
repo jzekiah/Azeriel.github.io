@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Very Special Question for Azeriel Leven Amper</title>
+    <style>
+        /* Font and color settings */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300&display=swap');
+        
+        /* Define the Family Blue color for the theme */
+        :root {
+            --family-blue: #4169E1; /* Royal Blue for Christening Boy */
+            --accent-color: #f0f4f7; /* Light Blue/Gray background */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--accent-color);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--family-blue); 
+        }
+        .baby-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 35px auto;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: block;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--family-blue);
+            font-size: 2.8em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #36454F; /* Dark Slate Gray */
+            margin-bottom: 35px;
+        }
+        p {
+            font-size: 1.15em;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 16px 35px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .accept {
+            background-color: var(--family-blue);
+            color: white;
+        }
+        .accept:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .decline {
+            background-color: #e0e0e0; 
+            color: #555;
+        }
+        .decline:hover {
+            background-color: #ccc;
+            transform: translateY(-2px);
+        }
+        .confirmation-message {
+            margin-top: 40px;
+            font-size: 1.3em;
+            color: var(--family-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="[YOUR_SINGLE_PUBLIC_IMAGE_URL_HERE]" alt="Picture of Baby Azeriel" class="baby-photo">
+        
+        <h1 id="greeting-title">Hi My Future Godparents!</h1>
+        <p class="subtitle">A Special Request for Azeriel Leven Amper</p>
+        
+        <p>
+            Hello! I'm about to have my christening on January 24, 2026, and while I can't quite pick out my own role models yet, Mommy and Daddy say they know exactly who I need. They tell me you have a wonderful heart and a spirit full of kindness and faith. I need a Godparent who will stand beside me at the font, help guide my journey in faith, and cheer for me through all the years to come. Will you please accept this honor and promise to be my special, lifelong guide?
+        </p>
+        <p style="font-style: italic; font-size: 1.05em; margin-bottom: 40px;">
+            Your love and guidance would be a treasured gift to me.
+        </p>
+
+        <h2>Will you be Azeriel's Godparent?</h2>
+
+        <div class="button-group">
+            <button class="accept" onclick="submitResponse('I Joyfully Accept')">I Joyfully Accept</button>
+            <button class="decline" onclick="submitResponse('I Am Unable to Accept')">I Am Unable to Accept</button>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 0.9em; color: #777;">
+            The christening will be held on **Saturday, January 24, 2026**, at **Nuestra Señora De La Paz Chapel, Basdio, Guindulman, Bohol**.
+        </p>
+    </div>
+
+    <script>
+        // 🚨 CRITICAL: REPLACE THESE WITH YOUR GOOGLE FORM IDs AND URL 🚨
+        const FORM_URL = "[YOUR_GOOGLE_FORM_URL_GOES_HERE]";
+        const NAME_FIELD_ID = "[ENTRY_ID_FOR_GODPARENT_NAME_FIELD]"; 
+        const RESPONSE_FIELD_ID = "[ENTRY_ID_FOR_ACCEPT_DECLINE_FIELD]"; 
+        
+        function getGodparentName() {
+            const params = new URLSearchParams(window.location.search);
+            // This extracts the name from the URL, e.g., ?name=Auntie%20Maria
+            return params.get('name') || 'Dear Friend'; 
+        }
+
+        function submitResponse(response) {
+            const godparentName = getGodparentName();
+            
+            // 1. Build the submission URL to silently submit the Google Form
+            const submitLink = `${FORM_URL}/formResponse?usp=pp_url&${NAME_FIELD_ID}=${encodeURIComponent(godparentName)}&${RESPONSE_FIELD_ID}=${encodeURIComponent(response)}&submit=Submit`;
+
+            // 2. Submit the Google Form in a new, tiny tab/window (the technical "magic")
+            window.open(submitLink, '_blank', 'width=100,height=100');
+            
+            // 3. Update the page to show a confirmation message
+            const container = document.querySelector('.container');
+            container.innerHTML = `
+                <div class="confirmation-message">
+                    <h1>Response Sent!</h1>
+                    <p>Thank you, ${godparentName}, for your quick response.</p>
+                    <p style="font-size: 1.1em; color: #36454F;">Azeriel's parents are so grateful for you.</p>
+                </div>
+            `;
+        }
+        
+        // Initialization: Personalize the Greeting based on the URL name
+        document.addEventListener('DOMContentLoaded', () => {
+            const godparentName = getGodparentName();
+            if (godparentName !== 'Dear Friend') {
+                 // The title is personalized, e.g., "To My Future Godparent, Aunt Maria!"
+                 document.getElementById('greeting-title').textContent = `To My Future Godparent, ${godparentName}!`;
+            }
+        });
+    </script>
+</body>
+</html>
